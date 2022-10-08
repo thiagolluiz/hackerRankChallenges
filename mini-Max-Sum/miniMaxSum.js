@@ -21,42 +21,33 @@ function readLine() {
 }
 
 /*
- * Complete the 'plusMinus' function below.
+ * Complete the 'miniMaxSum' function below.
  *
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
-function plusMinus(arr) {
-    // Write your code here
-
+function miniMaxSum(arr) {
+      
+    arr.sort((a, b) => a - b);
     let repeat = arr.length;
-    let positivos = 0;
-    let zero = 0;
-    let negativos = 0;
+    let sum = 0;
+    let mini = 0;
+    let max= 0;
 
     for (let i = 0; i < repeat; i++){
-        if(arr[i] > 0 ){
-            positivos++;
-        }else if(arr[i] == 0){
-            zero++
-        }else{
-            negativos++
+        sum = sum + arr[i];
         }
-    }
-    positivos = positivos / repeat ;
-    zero = zero / repeat ;
-    negativos = negativos / repeat ;
-    
-    
-    console.log(positivos.toFixed(6)); 
-    console.log(negativos.toFixed(6)); 
-    console.log(zero.toFixed(6))
-  
-}   
+    mini = sum - arr[repeat-1] ;
+    max = sum - arr[0] ;
+
+    console.log(mini, max);
+
+
+}
+
 function main() {
-    const n = parseInt(readLine().trim(), 10);
 
     const arr = readLine().replace(/\s+$/g, '').split(' ').map(arrTemp => parseInt(arrTemp, 10));
 
-    plusMinus(arr);
+    miniMaxSum(arr);
 }
