@@ -30,28 +30,39 @@ function readLine() {
  */
 
 function timeConversion(s) {
-    // Write your code here
-
-    ////////////
-
     let amPm = (s.endsWith('AM') ? 0 : 12);
+    // Checking if is Am or Pm, if is AM, the amPm equals 0, if is not equals 12
+
     let timeParts = s
-        // => .substring() = O parametro 0 pega todos os elementos, quando usa o s.length-2 diz para remover todos elementos a partir do penúltimo elemento, se for usado o .substring() com só um paramtro, ele irá remover todos os elementos para frente a partir daquele ponto
-        // => .substr() = diferente do .substring(), esse metodo extrai os elemento a partir do parametro que você define, e se inserido um segundo parametro ele limita os elementos extraidos 
-        //Ex.: text = "Hello world!";   text.substr(6, 3);   output = "wor"
+    // Taking "s" as timeParts
+
         .substring(0, s.length-2) 
-        // Split into [hour, min, sec]
+        //  => .substring() = O parametro 0 pega todos os elementos, quando usa o s.length-2 diz para remover todos elementos a partir do penúltimo elemento, se for usado o .substring() com só um paramtro, ele irá remover todos os elementos para frente a partir daquele ponto
+        //  => .substr() = diferente do .substring(), esse metodo extrai os elemento a partir do parametro que você define, e se inserido um segundo parametro ele limita os elementos extraidos 
+        // Ex.: text = "Hello world!";   text.substr(6, 3);   output = "wor"
+
         .split(':');
-    // Convert by using modulo 12 and adding 12 if PM
+        // Split into [hour, min, sec]
+        // Converting to a array every ":", ex.: 07:05:45 to [ '07', '05', '45' ]
+
     timeParts[0] = (Number(timeParts[0]) % 12 + amPm)
-        .toString()
+    // Convert by using modulo 12 and adding 12 if PM
+    // Take argument(imeParts[inThisPosition]), the of divide by 12 plus amPm
+
+        
+        .toString() 
+        // Converting to String type
+        
         .padStart(2, '0');
-    return timeParts.join(':'); // Rebuild time string
+        // Return 2 arguments, completing with 0, 
+        // Add 0 in front of String
+        /* --------------------------- */
+        //Ex.: const str1 = '25';
+        //console.log(str1.padStart(6, '1'));
+        // expected output: "111125"
 
-
-
-/////////////////
-
+    return timeParts.join(':'); 
+    // Rebuild time string
 }
 
 function main() {
