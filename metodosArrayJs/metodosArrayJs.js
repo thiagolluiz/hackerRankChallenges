@@ -66,7 +66,6 @@ console.log("Usar o map com raiz quadrada: ",newArr2);
 // array.map(function(currentValue, index, arr), thisValue)
 // function() => Required. A function to be run for each array element.
 // currentValue => Required. The value of the current element.
-// currentValue	=> Required. The value of the current element.
 // arr => Optional. The array of the current element.
 // thisValue => Optional. Default value undefined. A value passed to the function to be used as its this value.
 
