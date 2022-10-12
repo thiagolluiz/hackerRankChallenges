@@ -1,0 +1,88 @@
+'use strict';
+
+const fs = require('fs');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', function(inputStdin) {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', function() {
+    inputString = inputString.split('\n');
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+
+
+/*
+ * Complete the 'flippingMatrix' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts 2D_INTEGER_ARRAY matrix as parameter.
+ */
+
+function flippingMatrix(matrix) {
+    
+    let n = matrix.length / 2;
+    let max = 0;
+    let total = 0;
+    
+        for(let row = 0; row < n; row++) {
+            for(let col = 0; col < n; col++) {
+                max = 0;
+                max = Math.max(matrix[row][col], max);
+                max = Math.max(matrix[row][n*2 - 1 - col], max);
+                max = Math.max(matrix[n*2 - 1 - row][col], max);
+                max = Math.max(matrix[n*2 - 1 - row][n*2 - 1 - col], max);
+
+                total += max;
+            }
+    } 
+    return total;
+}
+
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+    const q = parseInt(readLine().trim(), 10);
+
+    for (let qItr = 0; qItr < q; qItr++) {
+        const n = parseInt(readLine().trim(), 10);
+
+        let matrix = Array(2 * n);
+
+        for (let i = 0; i < 2 * n; i++) {
+            matrix[i] = readLine().replace(/\s+$/g, '').split(' ').map(matrixTemp => parseInt(matrixTemp, 10));
+        }
+
+        const result = flippingMatrix(matrix);
+
+        ws.write(result + '\n');
+    }
+
+    ws.end();
+}
+
+/*
+1. A matriz invertida procura os maiores números que podem terminar no quadrante superior esquerdo.
+
+2. O primeiro passo é determinar n, que é matrix.length / 2. Isso fornece o número de linhas e colunas no quadrante superior esquerdo.
+
+3. Faremos um loop por todos os números nesse quadrante com um loop for aninhado de linhas e colunas e compararemos com o número à direita, inferior esquerdo e inferior direito que correspondem a esse local. É como escrever a matriz em um pedaço de papel e dobrá-lo em 4 e os números que estão em cima uns dos outros quando dobrados seriam comparados.
+
+4. Por exemplo, a primeira iteração é verificar se é [0][0] que é 112, [0][3] que é 119, [3][0] que é 62 e [3][3] que é 108. Devemos encontrar o máximo desses números.
+
+5. O truque é fazer com que o código veja as células na matriz com as quais ele pode ser invertido.
+
+6. Os quatro números que são comparados em cada iteração para o máximo são [row][col], [row][(n * 2) - 1 - col], [(n * 2) - 1 - row][col] e [(n * 2) - 1 - linha][(n * 2) - 1 - coluna] onde n * 2 é o número de elementos em cada linha e coluna. Nós menos 1 para obter as posições da matriz, então menos a linha ou coluna para referenciar a próxima linha ou coluna mais interna. Por exemplo, onde n = 4, col 0 compararia com col 7, col 1 compararia com col 6, col 2 compararia com col 5 e col 3 compararia com col 4. Da mesma forma para linhas.
+*/
