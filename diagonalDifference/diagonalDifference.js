@@ -30,11 +30,11 @@ function readLine() {
  */
 
 function diagonalDifference(arr) {
-   
+    
     let sumLeft = 0; 
     let sumRight = 0;
     const len = arr.length;
-     
+    
         for(let i = 0 ; i < len  ; i++){
             sumLeft += arr[i][i];
             sumRight += arr[ (len-1) - i][i];

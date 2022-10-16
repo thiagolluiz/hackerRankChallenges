@@ -1,0 +1,28 @@
+Neste desafio, a tarefa é depurar o código existente para executar com sucesso todos os arquivos de teste fornecidos.
+
+Dada uma série de n inteiros distintos, transforme o array em uma sequência em zig zag permutando os elementos do array. Uma sequência será chamada de sequência em zig zag se a primeira k elementos na sequência estão em ordem crescente e o último k elementos estão em ordem decrescente, onde k = (n+1)/2. Você precisa encontrar a menor sequência zig zag lexicograficamente da matriz fornecida.
+
+Exemplo .
+a = [2,3,5,1,4]
+
+Agora, se permutarmos o array como[1,4,5,3,2], o resultado é uma sequência em ziguezague.
+
+Depure a função fornecida findZigZagSequencepara retornar a sequência de zig zag apropriada para a matriz de entrada fornecida.
+
+Nota: Você pode modificar no máximo três linhas no código fornecido. Você não pode adicionar ou remover linhas de código.
+
+Para restaurar o código original, clique no ícone à direita do seletor de idioma.
+
+Formato de entrada
+
+A primeira linha contém t o número de casos de teste. A primeira linha de cada caso de teste contém um inteiro n, denotando o número de elementos da matriz. A próxima linha do caso de teste contém n elementos da matriz a.
+
+Restrições
+1 < t < 20 
+1 < n < 10000 (n é sempre estranho )
+1 < ai < 10°
+
+
+Formato de saída
+
+Para cada caso de teste, imprima os elementos da sequência zig zag transformada em uma única linha.
